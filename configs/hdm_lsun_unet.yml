@@ -1,0 +1,50 @@
+data:
+    modality: "2D"
+    dataset: "LSUN"
+    category: "church_outdoor"
+    image_size: 128
+    channels: 3
+    random_flip: true
+    num_workers: 32
+    num_classes: 1
+
+model:
+    model_type: "ddpm"
+    in_channels: 3
+    out_ch: 3
+    ch: 128
+    ch_mult: [1, 1, 2, 2, 4, 4]
+    num_res_blocks: 2
+    attn_resolutions: [16, ]
+    dropout: 0.0
+    resamp_with_conv: True
+    metric: sqeuclidean
+    ckpt_dir: ./outs/hdm_lsun_church/logs/ckpt_168750.pth
+
+diffusion:
+    beta_schedule: "cosine"
+    num_diffusion_timesteps: 1000
+    index: 0.1
+    sig: 1
+
+training:
+    batch_size: 32
+    n_epochs: 10000
+    n_iters: 168750
+    ckpt_store: 12500
+    validation_freq: 2000
+    
+sampling:
+    batch_size: 4
+    clamp_threshold: 500
+    num_sample: 50000
+
+ihdm:
+    K: 400
+    blur_sigma_min: 0.5
+    blur_sigma_max: 64
+    scale_factor: 0.5
+    
+optim:
+    lr: 0.00001
+    grad_clip: 1.0

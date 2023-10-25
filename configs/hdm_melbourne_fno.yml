@@ -1,0 +1,46 @@
+data:
+    modality: "1D"
+    dataset: "Melbourne"
+    dimension: 24
+    hyp_len: 2.0
+    hyp_gain: 1.0
+    num_workers: 4
+
+model:
+    model_type: "FNO"
+    n_modes: [24,]
+    hidden_channels: 256
+    in_channels: 1
+    out_channels: 1
+    lifting_channels: 256
+    projection_channels: 256
+    n_layers: 4
+    use_mlp: True
+    norm: 'group_norm'
+    preactivation: True
+    skip: 'soft-gating'
+    separable: True
+    factorization: null
+    rank: 1
+    joint_factorization: True
+    fixed_rank_modes: False
+    implementation: 'factorized'
+    ckpt_dir: "./outs/melbourne_1d_exp/logs/ckpt.pth"
+
+diffusion:
+    beta_schedule: "cosine"
+    num_diffusion_timesteps: 1000
+
+training:
+    batch_size: 1000
+    n_epochs: 2000
+    ckpt_store: 100
+
+sampling:
+    batch_size: 1000
+    clamp_threshold: 1000
+    num_sample: 10000
+
+optim:
+    lr: 0.00001
+    grad_clip: 1.0

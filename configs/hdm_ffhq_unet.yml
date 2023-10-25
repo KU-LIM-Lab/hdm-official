@@ -1,0 +1,49 @@
+data:
+    modality: "2D"
+    dataset: "FFHQ"
+    image_size: 256
+    channels: 3
+    random_flip: true
+    num_workers: 32
+    num_classes: 1
+
+model:
+    model_type: "ddpm"
+    in_channels: 3
+    out_ch: 3
+    ch: 128
+    ch_mult: [1, 1, 2, 2, 4, 4]
+    num_res_blocks: 2
+    attn_resolutions: [16, ]
+    dropout: 0.1
+    resamp_with_conv: True
+    metric: sqeuclidean
+    ckpt_dir: "/data7/hdm/t_ffhq_ddpm_sig1_idx0.1/logs/ckpt_450000.pth"
+
+diffusion:
+    beta_schedule: "cosine" 
+    num_diffusion_timesteps: 1000
+    index: 0.1
+    sig: 1
+
+training:
+    batch_size: 8
+    n_epochs: 100000
+    n_iters: 5000000
+    ckpt_store: 10000
+    validation_freq: 2000
+
+sampling:
+    batch_size: 1
+    clamp_threshold: 500
+    num_sample: 10000
+
+ihdm:
+    K: 200
+    blur_sigma_min: 0.5
+    blur_sigma_max: 128
+    scale_factor: 0.01
+    
+optim:
+    lr: 0.00001
+    grad_clip: 1.0
