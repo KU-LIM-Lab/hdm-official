@@ -76,4 +76,4 @@ url={https://openreview.net/forum?id=GrElRvXnEj}
 ```
 
 ## Contact
-- Sungbin Lim, [sungbin@korea.ac.kr](sungbin@korea.ac.kr)
+- Sungbin Lim, [sungbin@korea.ac.kr](mailto:sungbin@korea.ac.kr)
